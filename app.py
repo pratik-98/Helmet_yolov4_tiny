@@ -88,7 +88,12 @@ def main():
             if st.button("Let's Predict"):
                 result_img, total_detections = Predict(image)
                 st.image(result_img, use_column_width = True)
-                st.success("Wow... we got {} detections\n".format(total_detections))
+                if total_detections==0:
+                    st.error("oops... we did not get any detections\n")
+                elif total_detections==1:
+                    st.success("Wow... we got 1 detection\n")
+                else:
+                    st.success("Wow... we got {} detections\n".format(total_detections))
         st.write("Go to the About section from the sidebar to contact me!")
 
     elif choice == "About":
